@@ -1,0 +1,16 @@
+plugins {
+	id 'application'
+	id 'org.openjfx.javafxplugin'
+}
+
+mainClassName = 'eu.hansolo.fx.smoothcharts.Demo'
+
+dependencies {
+	implementation project(':smooth-charts')
+}
+
+run {
+	jvmArgs '--illegal-access=permit'
+	jvmArgs '--add-modules=ALL-SYSTEM'
+	jvmArgs '--add-exports=javafx.controls/com.sun.javafx.charts=ALL-UNNAMED'
+}

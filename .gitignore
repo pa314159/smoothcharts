@@ -1,4 +1,10 @@
-/.gradle
-/.idea
-/out
-.DS_Store
+bin/
+target/
+build/
+out/
+*.log
+*.launch
+*.tmp
+.*
+!.git?*
+

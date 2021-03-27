@@ -21,6 +21,7 @@ import com.sun.javafx.charts.Legend.LegendItem;
 import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
 import javafx.animation.SequentialTransition;
+import javafx.beans.NamedArg;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.BooleanPropertyBase;
 import javafx.beans.property.DoubleProperty;
@@ -121,12 +122,12 @@ public class SmoothedChart<X, Y> extends AreaChart<X, Y> {
 
 
     // ******************** Constructors **************************************
-    public SmoothedChart(final Axis<X> xAxis, final Axis<Y> yAxis) {
+    public SmoothedChart(final @NamedArg("xAxis") Axis<X> xAxis, final @NamedArg("yAxis") Axis<Y> yAxis) {
         super(xAxis, yAxis);
         init();
         registerListeners();
     }
-    public SmoothedChart(final Axis<X> xAxis, final Axis<Y> yAxis, final ObservableList<Series<X, Y>> data) {
+    public SmoothedChart(final @NamedArg("xAxis") Axis<X> xAxis, @NamedArg("yAxis") final Axis<Y> yAxis, final @NamedArg("data") ObservableList<Series<X, Y>> data) {
         super(xAxis, yAxis, data);
         init();
         registerListeners();

@@ -1,14 +1,42 @@
-group 'eu.hansolo.fx'
-version '1.0'
-
-apply plugin: 'java'
-
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
+plugins {
+	id 'org.openjfx.javafxplugin' version '0.0.9' apply false
 }
 
-dependencies {
+allprojects {
+    apply plugin: 'lifecycle-base'
+	apply plugin: 'eclipse'
+
+	defaultTasks 'build'
+
+	eclipse.project.natures 'org.eclipse.buildship.core.gradleprojectnature'
+}
+
+subprojects {
+	repositories {
+		mavenCentral()
+	}
+
+	group 'eu.hansolo.fx'
+	version '1.0'
+
+	tasks.withType( JavaCompile ) {
+		options.compilerArgs << '-parameters'
+	
+		build.dependsOn it
+	}
+	plugins.withType JavaPlugin, {
+		sourceCompatibility = '8'
+
+		java {
+			withSourcesJar()
+		}
+	}
+	plugins.withId 'org.openjfx.javafxplugin', {
+		javafx {
+			version = javaFxVersion
+
+			modules = ['javafx.controls']
+		}
+	}
 
 }
